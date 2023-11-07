@@ -9,3 +9,6 @@
 
 /doc.assets.sql/
 **/*.iml
+
+**/src/test/**
+**/target/**
