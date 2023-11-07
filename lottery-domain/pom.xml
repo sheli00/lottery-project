@@ -7,6 +7,14 @@
     <groupId>com.sheli.lottery</groupId>
     <artifactId>lottery-domain</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <dependencies>
+        <dependency>
+            <groupId>com.sheli.lottery</groupId>
+            <artifactId>lottery-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
