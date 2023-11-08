@@ -5,6 +5,7 @@ import com.sheli.lottery.domain.activity.model.vo.ActivityBillVO;
 import com.sheli.lottery.domain.activity.repository.IActivityRepository;
 import com.sheli.lottery.infrastructure.dao.IActivityDao;
 import com.sheli.lottery.infrastructure.po.Activity;
+import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
 
@@ -14,6 +15,7 @@ import javax.annotation.Resource;
  * @date: 2023/11/7
  * @github: https://github.com/sheli00
  */
+@Repository
 public class ActivityRepository implements IActivityRepository {
 
     @Resource
