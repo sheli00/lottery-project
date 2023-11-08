@@ -18,4 +18,11 @@ public interface IActivityRepository {
      */
     ActivityBillVO queryActivityBill(PartakeReq req);
 
+    /**
+     * 扣减活动库存
+     * @param activityId 活动ID
+     * @return 扣减结构
+     */
+    int subtractionActivityStock(Long activityId);
+
 }

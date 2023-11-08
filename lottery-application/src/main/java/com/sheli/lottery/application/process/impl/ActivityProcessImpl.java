@@ -27,7 +27,7 @@ public class ActivityProcessImpl implements IActivityProcess {
     public DrawProcessResult doDrawProcess(DrawProcessReq req) {
         // 领取活动 TODO
         PartakeResult partakeResult = activityPartake.doPartake(new PartakeReq(req.getuId(), req.getActivityId()));
-
+        System.out.println(partakeResult.toString());
         // 执行抽奖 TODO
         // 结果落库 TODO
         // 发送MQ TODO
