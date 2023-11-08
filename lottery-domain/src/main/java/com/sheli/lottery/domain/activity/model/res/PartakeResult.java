@@ -33,4 +33,12 @@ public class PartakeResult extends Result {
     public void setTakeId(Long takeId) {
         this.takeId = takeId;
     }
+
+    @Override
+    public String toString() {
+        return "PartakeResult{" +
+                "strategyId=" + strategyId +
+                ", takeId=" + takeId +
+                '}';
+    }
 }
