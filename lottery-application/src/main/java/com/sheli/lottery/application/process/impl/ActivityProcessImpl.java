@@ -7,6 +7,9 @@ import com.sheli.lottery.common.Constants;
 import com.sheli.lottery.domain.activity.model.req.PartakeReq;
 import com.sheli.lottery.domain.activity.model.res.PartakeResult;
 import com.sheli.lottery.domain.activity.service.partake.IActivityPartake;
+import com.sheli.lottery.domain.strategy.model.req.DrawReq;
+import com.sheli.lottery.domain.strategy.model.res.DrawResult;
+import com.sheli.lottery.domain.strategy.service.draw.IDrawExec;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -23,12 +26,24 @@ public class ActivityProcessImpl implements IActivityProcess {
     @Resource
     private IActivityPartake activityPartake;
 
+    @Resource
+    private IDrawExec drawExec;
+
     @Override
     public DrawProcessResult doDrawProcess(DrawProcessReq req) {
-        // 领取活动 TODO
+        // 领取活动
         PartakeResult partakeResult = activityPartake.doPartake(new PartakeReq(req.getuId(), req.getActivityId()));
         System.out.println(partakeResult.toString());
+        if (!Constants.ResponseCode.SUCCESS.getCode().equals(partakeResult.getCode())) {
+            return new DrawProcessResult(partakeResult.getCode(), partakeResult.getInfo());
+        }
+        Long strategyId = partakeResult.getStrategyId();
+        Long takeId = partakeResult.getTakeId();
+
         // 执行抽奖 TODO
+        DrawResult drawResult = drawExec.doDrawExec(new DrawReq(req.getuId(), strategyId));
+        System.out.println(drawResult.toString());
+
         // 结果落库 TODO
         // 发送MQ TODO
         // 返回结果 TODO
