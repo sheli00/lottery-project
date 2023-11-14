@@ -1,10 +1,13 @@
 package com.sheli.lottery.infrastructure.repository;
 
 import com.sheli.lottery.common.Constants;
+import com.sheli.lottery.domain.activity.model.vo.DrawOrderVO;
 import com.sheli.lottery.domain.activity.model.vo.UserTakeActivityVO;
 import com.sheli.lottery.domain.activity.repository.IUserTakeActivityRepository;
+import com.sheli.lottery.infrastructure.dao.IUserStrategyExportDao;
 import com.sheli.lottery.infrastructure.dao.IUserTakeActivityCountDao;
 import com.sheli.lottery.infrastructure.dao.IUserTakeActivityDao;
+import com.sheli.lottery.infrastructure.po.UserStrategyExport;
 import com.sheli.lottery.infrastructure.po.UserTakeActivity;
 import com.sheli.lottery.infrastructure.po.UserTakeActivityCount;
 import org.springframework.stereotype.Repository;
@@ -26,6 +29,9 @@ public class UserTakeActivityRepository implements IUserTakeActivityRepository {
 
     @Resource
     private IUserTakeActivityCountDao userTakeActivityCountDao;
+
+    @Resource
+    private IUserStrategyExportDao userStrategyExportDao;
 
     @Override
     public UserTakeActivityVO queryNoConsumedTakeActivityOrder(Long activityId, String uId) {
@@ -61,7 +67,7 @@ public class UserTakeActivityRepository implements IUserTakeActivityRepository {
         } else {
             userTakeActivityCount.setuId(uId);
             userTakeActivityCount.setActivityId(activityId);
-            return userTakeActivityCountDao.updateLeftCount(userTakeLeftCount);
+            return userTakeActivityCountDao.updateLeftCount(userTakeActivityCount);
         }
     }
 
@@ -85,6 +91,35 @@ public class UserTakeActivityRepository implements IUserTakeActivityRepository {
 
         userTakeActivityDao.insert(userTakeActivity);
 
+    }
+
+    @Override
+    public int lockTackActivity(String uId, Long activityId, Long takeId) {
+        UserTakeActivity userTakeActivity = new UserTakeActivity();
+        userTakeActivity.setuId(uId);
+        userTakeActivity.setActivityId(activityId);
+        userTakeActivity.setTakeId(takeId);
+        return userTakeActivityDao.lockTackActivity(userTakeActivity);
+    }
+
+    @Override
+    public void saveUserStrategyExport(DrawOrderVO drawOrder) {
+        UserStrategyExport userStrategyExport = new UserStrategyExport();
+        userStrategyExport.setuId(drawOrder.getuId());
+        userStrategyExport.setActivityId(drawOrder.getActivityId());
+        userStrategyExport.setOrderId(drawOrder.getOrderId());
+        userStrategyExport.setStrategyId(drawOrder.getStrategyId());
+        userStrategyExport.setStrategyMode(drawOrder.getStrategyMode());
+        userStrategyExport.setGrantType(drawOrder.getGrantType());
+        userStrategyExport.setGrantDate(drawOrder.getGrantDate());
+        userStrategyExport.setGrantState(drawOrder.getGrantState());
+        userStrategyExport.setAwardId(drawOrder.getAwardId());
+        userStrategyExport.setAwardType(drawOrder.getAwardType());
+        userStrategyExport.setAwardName(drawOrder.getAwardName());
+        userStrategyExport.setAwardContent(drawOrder.getAwardContent());
+        userStrategyExport.setUuid(String.valueOf(drawOrder.getTakeId()));
+
+        userStrategyExportDao.insert(userStrategyExport);
     }
 
 

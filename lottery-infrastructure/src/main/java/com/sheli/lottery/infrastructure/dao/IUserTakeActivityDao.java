@@ -17,6 +17,9 @@ public interface IUserTakeActivityDao {
     @DBRouter
     UserTakeActivity queryNoConsumedTakeActivityOrder(UserTakeActivity userTakeActivity);
 
+//    @DBRouter(key = "uId")
     void insert(UserTakeActivity userTakeActivity);
+
+    int lockTackActivity(UserTakeActivity userTakeActivity);
 
 }

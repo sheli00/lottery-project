@@ -47,7 +47,7 @@ public class ActivityRepository implements IActivityRepository {
         activityBillVO.setEndDateTime(activity.getEndDateTime());
         activityBillVO.setTakeCount(activity.getTakeCount());
         activityBillVO.setStockSurplusCount(activity.getStockSurplusCount());
-        activityBillVO.setStrategyId(activity.getActivityId());
+        activityBillVO.setStrategyId(activity.getStrategyId());
         activityBillVO.setState(activity.getState());
         activityBillVO.setUserTakeLeftCount(null == userTakeActivityCount ? null : userTakeActivityCount.getLeftCount());
         return activityBillVO;

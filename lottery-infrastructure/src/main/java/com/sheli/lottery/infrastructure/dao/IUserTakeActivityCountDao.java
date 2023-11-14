@@ -18,6 +18,6 @@ public interface IUserTakeActivityCountDao {
 
     void insert(UserTakeActivityCount userTakeActivityCount);
 
-    int updateLeftCount(Integer userTakeLeftCount);
+    int updateLeftCount(UserTakeActivityCount userTakeLeftCount);
 
 }
