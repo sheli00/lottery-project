@@ -35,10 +35,10 @@ public abstract class AbstractDraw extends DrawStrategySupport implements IDrawE
         // 获取不在抽奖范围内的列表
         List<String> excludeAwardIds = this.queryExcludeAwardIds(req.getStrategyId());
 
-        // 执行抽奖算法 TODO
+        // 执行抽奖算法
         String awardId = this.drawAlgorithm(req.getStrategyId(), drawAlgorithmGroup.get(strategy.getStrategyMode()), excludeAwardIds);
 
-        // 包装中奖结果 TODO
+        // 包装中奖结果
         return buildDrawResult(req.getuId(), req.getStrategyId(), awardId, strategy);
     }
 
