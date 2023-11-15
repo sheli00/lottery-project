@@ -38,6 +38,7 @@ public class ActivityPartakeImpl extends BaseActivityPartake {
     @Resource
     private TransactionTemplate transactionTemplate;
 
+
     @Override
     protected UserTakeActivityVO queryNoConsumedTakeActivityOrder(Long activityId, String uId) {
         return userTakeActivityRepository.queryNoConsumedTakeActivityOrder(activityId, uId);
@@ -151,4 +152,6 @@ public class ActivityPartakeImpl extends BaseActivityPartake {
             dbRouter.clear();
         }
     }
+
+
 }
