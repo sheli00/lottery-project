@@ -60,4 +60,6 @@ public interface IUserTakeActivityRepository {
      */
     void saveUserStrategyExport(DrawOrderVO drawOrder);
 
+    void updateInvoiceMqState(String getuId, Long orderId, Integer code);
+
 }
